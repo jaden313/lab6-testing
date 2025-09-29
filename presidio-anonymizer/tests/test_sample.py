@@ -4,10 +4,9 @@ from presidio_anonymizer.sample import sample_run_anonymizer
 def test_sample_run_anonymizer():
     result = sample_run_anonymizer("My name is Bond.", 11, 15)
 
-    # Verify text replacement
-    assert "BIP" in result.text
+    assert result.text == "My name is BIP."
+    assert len(result.items) == 1
 
-    # Verify structure of the first item (use attributes instead of dict access)
     first_item = result.items[0]
     assert first_item.start == 11
     assert first_item.end == 14
